@@ -14,7 +14,7 @@ else
 LIB_EXT=Linux.so
 endif
 
-BWA_MEM_COMMIT=ec85a563e64710e7fc8c8c0b373d80570e245bd1
+BWA_MEM_COMMIT=accd48a7b74e7e380f01dd1831c205878dfbdfdf
 JNI_BASE_NAME=org_broadinstitute_hellbender_utils_bwa_BwaMemIndex
 
 all: libbwa.$(LIB_EXT)
@@ -23,7 +23,7 @@ libbwa.$(LIB_EXT): $(JNI_BASE_NAME).o jnibwa.o bwa/libbwa.a
 	$(CC) -ggdb -dynamiclib -shared -o $@ $^ -lm -lz -lpthread
 
 bwa:
-	git clone https://github.com/lh3/bwa && cd bwa && git checkout $(BWA_MEM_COMMIT) && echo '#define BWA_COMMIT "'$(BWA_MEM_COMMIT)'"' > bwa_commit.h
+	git clone https://github.com/frank-y-liu/bwa && cd bwa && git checkout $(BWA_MEM_COMMIT) && echo '#define BWA_COMMIT "'$(BWA_MEM_COMMIT)'"' > bwa_commit.h
 
 bwa/libbwa.a: bwa
 	$(MAKE) CFLAGS="$(CFLAGS)" -C bwa libbwa.a
